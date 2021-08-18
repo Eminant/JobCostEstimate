@@ -1,0 +1,52 @@
+import java.util.Scanner;
+
+class jobEstimate{
+    public static void main (String[] args)
+    {
+        String jobName;
+        double materials;
+        double laborHours;
+        double travHours;
+        double estPrice;
+        int ok;
+
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter '1' to begin calculating a job's price information: ");
+        ok = input.nextInt();
+
+        while(ok == 1){
+        
+        System.out.print("Enter the job name: ");
+        jobName = input.next();
+        input.nextLine();
+
+        System.out.print("Enter cost for materials: ");
+        materials = input.nextDouble();
+
+        System.out.print("Enter on-site labor hours: ");
+        laborHours = input.nextDouble();
+
+        System.out.print("Enter amount of hours travelling: ");
+        travHours = input.nextDouble();
+
+        //Call price estimation method
+        estPrice = generatePrice(materials, laborHours, travHours);
+
+        //Show estimated values
+        System.out.print("The estimated price for " + jobName + " is $" + estPrice);
+
+        System.out.print("\nEnter '1' to calculate another job, or any other integer to quit: ");
+        ok = input.nextInt();
+
+    }
+    } 
+
+    //method to calculate estimate with above numbers
+    public static double generatePrice(double mtrl, double labor, double travel)
+    {
+        double laborRate = 35;
+        double travRate = 12;
+        double estimate = mtrl + (labor*laborRate) + (travel*travRate);
+        return estimate;
+    }
+}
